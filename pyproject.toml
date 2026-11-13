@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=75", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "central-cube"
+version = "1.0.0"
+description = "CENTRAL CUBE - secure Windows computer management"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "PySide6>=6.8,<7",
+  "cryptography>=44,<47",
+  "platformdirs>=4.3,<5",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.3,<10", "pytest-cov>=6,<7", "pytest-qt>=4.4,<5", "ruff>=0.9,<1", "pyinstaller>=6.11,<7"]
+
+[project.scripts]
+central-cube = "central_cube.main:main"
+central-cube-agent = "central_cube.agent.main:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
